@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffcc"
+    android:id="@+id/signup"
+    android:background="#fff"
     tools:context=".Signup">
 
     <RelativeLayout
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="50sp"
         android:paddingEnd="50sp"
-        android:paddingTop="50sp">
+        >
         <android.support.design.widget.TextInputLayout
             android:id="@+id/username"
             android:layout_width="match_parent"
@@ -50,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-
                 android:textColorHint="@color/colorPrimaryDark" />
         </android.support.design.widget.TextInputLayout>
 
@@ -102,23 +102,64 @@
                 android:textColorHint="@color/colorPrimaryDark" />
 
         </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner"
-            android:layout_width="130sp"
-
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/number"
-            android:textAlignment="center">
-        </android.support.v7.widget.AppCompatSpinner>
+            android:paddingStart="50sp"
+            android:paddingEnd="50sp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <EditText
+                    android:id="@+id/caddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:maxLines="1"
+                    android:inputType="textAutoComplete"
+                    android:textColorHint="@color/colorPrimaryDark" />
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="50sp"
+        android:paddingEnd="50sp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <EditText
+                android:id="@+id/cemailid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email ID"
+                android:inputType="textAutoComplete"
+                android:maxLines="1"
+                android:textColorHint="@color/colorPrimaryDark" />
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
+
+
+
+
 
     <Button
         android:id="@+id/signup1"
         android:layout_width="wrap_content"
         android:layout_height="45sp"
-        android:text="join us"
+        android:text="CONTINUE"
         android:layout_marginTop="10sp"
         android:textColor="#ffffcc"
         android:background="@color/colorPrimaryDark"

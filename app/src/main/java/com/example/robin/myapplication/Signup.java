@@ -1,7 +1,11 @@
 package com.example.robin.myapplication;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,12 +41,11 @@ public class Signup extends Fragment {
 
     String Server_url = "https://photogenic0001.000webhostapp.com/photogenic/photogenic1.0/createaccount.php";
     Button button;
-    Spinner spinner;
     TextView textView;
     ImageView imageView,plock1,plock0,gone;
     EditText username,password,repassword,phno;
-    ArrayAdapter<CharSequence> adapter;
-    String gender,un,ps,repas,phn;
+    String un,ps,repas,phn,email,add;
+    FragmentTransaction fragmentTransaction;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -58,25 +61,6 @@ public class Signup extends Fragment {
         phno = getActivity().findViewById(R.id.phno1);
         button = getActivity().findViewById(R.id.signup1);
         imageView = getActivity().findViewById(R.id.visible);
-
-
-        spinner = getActivity().findViewById(R.id.spinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(),R.array.GENDER, android.R.layout.simple_spinner_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                gender = spinner.getSelectedItem().toString();
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -105,11 +89,27 @@ public class Signup extends Fragment {
                 {
                   Toast.makeText(getActivity(),"password dosent match", Toast.LENGTH_LONG).show();
                 }
-                else if(gender.equals("Gender")){
-                    Toast.makeText(getActivity(),"Please select your Gender", Toast.LENGTH_LONG).show();
-                }
                 else {
-                    open();
+
+                    //open();
+                    SharedPreferences preferences = getActivity().getSharedPreferences("details", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("name",un);
+                    editor.putString("Phone", phn);
+                    editor.putString("Email",email);
+                    editor.putString("password",ps);
+                    editor.putString("address",add);
+                    editor.apply();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    Secondsignup secondsignup = new Secondsignup();
+                    Signup signin_form = (Signup) fragmentManager.findFragmentByTag("signin");
+                  //  LoginActivity login_page = (LoginActivity) fragmentManager.findFragmentByTag("login666");
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.remove(signin_form);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.add(R.id.cre,secondsignup,"secondsign");
+                    // getFragmentManager().popBackStackImmediate();
+                    fragmentTransaction.commit();
                 }
 
             }
@@ -118,36 +118,6 @@ public class Signup extends Fragment {
     }
 
     public void open(){
-        StringRequest request = new StringRequest(Request.Method.POST, Server_url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getActivity(),response, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getActivity(),MainActivity.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                String voll = error.toString();
-                Toast.makeText(getActivity(),voll, Toast.LENGTH_LONG).show();
 
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                un = username.getText().toString();
-                ps = password.getText().toString();
-                repas = repassword.getText().toString();
-                phn = phno.getText().toString();
-                params.put("name",un);
-                params.put("password",ps);
-                params.put("phno",phn);
-                params.put("gender",gender);
-                return params;
-            }
-        };
-        MySingleton.getInstance(getActivity()).addToRequestQue(request);
     }
 }

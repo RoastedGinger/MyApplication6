@@ -28,7 +28,7 @@
                 android:id="@+id/username1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User Name"
+                android:hint="Consumer ID"
                 android:inputType="textAutoComplete"
                 android:textColorHint="@color/colorPrimaryDark"
                 android:maxLines="1" />
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:visibility="visible"
+            android:visibility="invisible"
             app1:indicatorColor="@color/colorPrimaryDark"
             app:indicatorName="BallPulseIndicator" />
     </RelativeLayout>

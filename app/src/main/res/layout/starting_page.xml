@@ -12,10 +12,10 @@
     >
 
     <ImageView
-        android:layout_width="70sp"
+        android:layout_width="100sp"
         android:layout_height="70sp"
 
-        android:background="@mipmap/power"/>
+        android:background="@mipmap/power1"/>
 
     <TextView
         android:id="@+id/icon"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="DomPowCom"
-        android:textColor="#ffffcc"
+        android:textColor="#fff"
         android:layout_marginBottom="10sp"
         android:textSize="40sp" />
 

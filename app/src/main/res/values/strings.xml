@@ -1,9 +1,33 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="create">"Don't have an account yet?\ncreate one"</string>
-    <string-array name="GENDER">
-        <item>Gender</item>
-        <item>Male</item>
-        <item>Female</item>
+    <string-array name="supply_type">
+        <item>supply Type</item>
+        <item>Domestic</item>
+        <item>Commercial</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="phase">
+        <item>Phase type</item>
+        <item>1 phase meter</item>
+        <item>2 phase meter</item>
+        <item>3 phase meter</item>
+    </string-array>
+
+    <string-array name="connected_load">
+        <item>Connected Load</item>
+        <item>6.00 KVA</item>
+        <item>7.00 KVA</item>
+        <item>8.00 KVA</item>
+    </string-array>
+
+    <string-array name="meter_type">
+        <item>Meter type</item>
+        <item>307468</item>
+        <item>458986</item>
+        <item>35989</item>
     </string-array>
 </resources>
