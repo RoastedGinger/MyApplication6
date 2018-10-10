@@ -41,10 +41,10 @@ import java.util.Map;
 import static android.content.Context.MODE_PRIVATE;
 
 public class LoginActivity extends Fragment  {
-    String Server_url = "https://photogenic0001.000webhostapp.com/photogenic/photogenic1.0/login1.php";
+    String Server_url = "https://beholden-effects.000webhostapp.com/DomPowCom/login.php";
     public Button logg;
     EditText username,password;
-    String un,ps;
+    String idofcus,ps;
     TextView signup;
     AVLoadingIndicatorView avi;
     ImageView imageView;
@@ -107,13 +107,14 @@ public class LoginActivity extends Fragment  {
                         String res=response.toString().trim();
                         if(!res.equals("0"))
                         {
-                            SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                            /*SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("status",res);
-                            editor.apply();
-                            Toast.makeText(getActivity(), res,Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getActivity(),MainActivity.class);
-                            startActivity(intent);
+                            editor.apply();*/
+
+                            Toast.makeText(getActivity(),res,Toast.LENGTH_LONG).show();
+                            //Intent intent = new Intent(getActivity(),MainActivity.class);
+                            //startActivity(intent);
 //                            fragmentTransaction.remove(Login.this).commit();
                         }
                         else
@@ -133,10 +134,10 @@ public class LoginActivity extends Fragment  {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                un = username.getText().toString();
+                idofcus = username.getText().toString();
                 ps = password.getText().toString();
-                params.put("name",un);
-                params.put("password",ps);
+                params.put("cus",idofcus);
+                params.put("ps",ps);
                 return params;
             }
         };

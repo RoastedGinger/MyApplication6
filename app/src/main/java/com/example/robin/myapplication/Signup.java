@@ -43,7 +43,7 @@ public class Signup extends Fragment {
     Button button;
     TextView textView;
     ImageView imageView,plock1,plock0,gone;
-    EditText username,password,repassword,phno;
+    EditText username,password,repassword,phno,adder,eid;
     String un,ps,repas,phn,email,add;
     FragmentTransaction fragmentTransaction;
     @Nullable
@@ -59,6 +59,8 @@ public class Signup extends Fragment {
         password = getActivity().findViewById(R.id.password1);
         repassword = getActivity().findViewById(R.id.rpassword1);
         phno = getActivity().findViewById(R.id.phno1);
+        adder = getActivity().findViewById(R.id.caddress);
+        eid = getActivity().findViewById(R.id.cemailid);
         button = getActivity().findViewById(R.id.signup1);
         imageView = getActivity().findViewById(R.id.visible);
         button.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,9 @@ public class Signup extends Fragment {
                 ps = password.getText().toString();
                 repas = repassword.getText().toString();
                 phn = phno.getText().toString();
+                add = adder.getText().toString();
+                email = eid.getText().toString();
+
                 if(TextUtils.isEmpty(un))
                 {
                     username.setError("Cannot be Empty");

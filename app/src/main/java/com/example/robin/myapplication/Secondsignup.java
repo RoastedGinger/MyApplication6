@@ -3,7 +3,6 @@ package com.example.robin.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -33,8 +32,9 @@ public class Secondsignup extends Fragment {
     Spinner spinner1,spinner2,spinner3,spinner4;
     ArrayAdapter<CharSequence> adapter;
     String supp,met,conn,phas;
+
     Button submit;
-    String Server_url,name,phone,address,email,ps;
+    String Server_url = "http://beholden-effects.000webhostapp.com/DomPowCom/Odd_info.php",name,phone,address,email,ps;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -96,7 +96,6 @@ public class Secondsignup extends Fragment {
                 conn = spinner2.getSelectedItem().toString();
             }
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -121,42 +120,52 @@ public class Secondsignup extends Fragment {
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StringRequest request = new StringRequest(Request.Method.POST, Server_url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getActivity(),response, Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getActivity(),MainActivity.class);
-                                startActivity(intent);
-                            }
-                        }, new Response.ErrorListener() {
+                submit.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        String voll = error.toString();
-                        Toast.makeText(getActivity(),voll, Toast.LENGTH_LONG).show();
-
+                    public void onClick(View v) {
+                        post();
                     }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String,String> params = new HashMap<>();
-                        params.put("supply",supp);
-                        params.put("meter",met);
-                        params.put("conn_load",conn);
-                        params.put("phase_type",phas);
-                        params.put("name",name);
-                        params.put("phone",phone);
-                        params.put("address",address);
-                        params.put("Email",email);
-                        params.put("password",ps);
-                        return params;
-                    }
-                };
-                MySingleton.getInstance(getActivity()).addToRequestQue(request);
-            }
-        });
+                });
         }
+
+    private void post() {
+
+        StringRequest request = new StringRequest(Request.Method.POST, Server_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                       // Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
+
+                        SharedPreferences preferences = getActivity().getSharedPreferences("unique", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("id",response);
+                        editor.apply();
+                        Intent intent = new Intent(getActivity(),Homepage.class);
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String voll = error.toString();
+                Toast.makeText(getActivity(),voll,Toast.LENGTH_LONG).show();
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("supply",supp);
+                params.put("meter",met);
+                params.put("conn_load",conn);
+                params.put("phase_type",phas);
+                params.put("name",name);
+                params.put("phone",phone);
+                params.put("address",address);
+                params.put("Email",email);
+                params.put("password",ps);
+                return params;
+            }
+        };
+        MySingleton.getInstance(getActivity()).addToRequestQue(request);
+    }
 }
