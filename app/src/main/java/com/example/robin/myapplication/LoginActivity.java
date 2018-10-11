@@ -107,14 +107,15 @@ public class LoginActivity extends Fragment  {
                         String res=response.toString().trim();
                         if(!res.equals("0"))
                         {
-                            /*SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                           /* SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("status",res);
                             editor.apply();*/
 
+
                             Toast.makeText(getActivity(),res,Toast.LENGTH_LONG).show();
-                            //Intent intent = new Intent(getActivity(),MainActivity.class);
-                            //startActivity(intent);
+                            Intent intent = new Intent(getActivity(),Homepage.class);
+                            startActivity(intent);
 //                            fragmentTransaction.remove(Login.this).commit();
                         }
                         else

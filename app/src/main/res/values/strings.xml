@@ -30,4 +30,13 @@
         <item>458986</item>
         <item>35989</item>
     </string-array>
+
+    <string-array name="complaint_type">
+        <item>Complaint</item>
+        <item>short circuit</item>
+        <item>Light,switches</item>
+        <item>circuit overload</item>
+        <item>light,bulbs burning</item>
+        <item>hign/low voltage</item>
+    </string-array>
 </resources>

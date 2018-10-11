@@ -86,21 +86,7 @@ public class Secondsignup extends Fragment {
             }
         });
 
-        spinner3 = getActivity().findViewById(R.id.load);
-        adapter = ArrayAdapter.createFromResource(getActivity(),R.array.connected_load, android.R.layout.simple_spinner_item);
-        spinner3.setAdapter(adapter);
-        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                conn = spinner2.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
         spinner4 = getActivity().findViewById(R.id.meter);

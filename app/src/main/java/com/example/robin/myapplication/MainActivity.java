@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.starting_page);
         textView = findViewById(R.id.icon);
         LoginActivity login = new LoginActivity();
-//        Typeface face = Typeface.createFromAsset(getAssets(),"font/Bilbo Swash Caps.ttf");
+  //      Typeface face = Typeface.createFromAsset(getAssets(),"font/Bilbo Swash Caps.ttf");
   //      textView.setTypeface(face);
         SharedPreferences prefs = getSharedPreferences("user",MODE_PRIVATE);
         String restoredText = prefs.getString("status", null);
