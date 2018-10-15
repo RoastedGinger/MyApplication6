@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.app.Fragment;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.android.volley.VolleyLog.TAG;
 
 
 public class Secondsignup extends Fragment {
@@ -32,7 +34,6 @@ public class Secondsignup extends Fragment {
     Spinner spinner1,spinner2,spinner3,spinner4;
     ArrayAdapter<CharSequence> adapter;
     String supp,met,conn,phas;
-
     Button submit;
     String Server_url = "http://beholden-effects.000webhostapp.com/DomPowCom/Odd_info.php",name,phone,address,email,ps;
 
@@ -86,7 +87,22 @@ public class Secondsignup extends Fragment {
             }
         });
 
+        spinner3 = getActivity().findViewById(R.id.load);
+        adapter = ArrayAdapter.createFromResource(getActivity(),R.array.connected_load, android.R.layout.simple_spinner_item);
+        spinner3.setAdapter(adapter);
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                conn = spinner3.getSelectedItem().toString();
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         spinner4 = getActivity().findViewById(R.id.meter);

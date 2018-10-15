@@ -58,11 +58,12 @@
                   <EditText
                       android:layout_width="match_parent"
                       android:layout_height="200sp"
+                      android:padding="20sp"
                       android:hint="type your complaint here"
                       android:scrollbars="vertical"
                       android:id="@+id/details"
                       android:gravity="top|start"
-                      android:background="@drawable/eshape"
+
                      />
 
                   <Button

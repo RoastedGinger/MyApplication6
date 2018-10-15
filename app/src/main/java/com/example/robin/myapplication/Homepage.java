@@ -34,7 +34,7 @@ public class Homepage extends AppCompatActivity {
     Spinner spinner2;
     String formattedDate;
     ArrayAdapter<CharSequence> adapter;
-    String details, c_type,Server_url="https://beholden-effects.000webhostapp.com/DomPowCom/comgen.php",trigger ="1";
+    String details, c_type,Server_url="https://beholden-effects.000webhostapp.com/DomPowCom/complaint.php",trigger ="1";
 
 
     @Override
@@ -49,11 +49,7 @@ public class Homepage extends AppCompatActivity {
         textView = findViewById(R.id.textfield);
         textView.setText("your customer id is "+id);
         spinner2 = findViewById(R.id.c_type);
-        details = editText.getText().toString();
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        formattedDate = df.format(c);
+
         adapter = ArrayAdapter.createFromResource(Homepage.this,R.array.complaint_type, android.R.layout.simple_spinner_item);
         spinner2.setAdapter(adapter);
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -69,7 +65,14 @@ public class Homepage extends AppCompatActivity {
 
             }
         });
-        post();
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post();
+            }
+        });
+
 
         }
 
@@ -109,6 +112,11 @@ public class Homepage extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
+                details = editText.getText().toString();
+                Date c = Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                formattedDate = df.format(c);
                 params.put("id",id);
                 params.put("date",formattedDate);
                 params.put("c_type",c_type);
