@@ -1,20 +1,12 @@
-package com.example.robin.myapplication;
+package my.power.project;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -30,7 +22,7 @@ public class MainActivity extends AppCompatActivity{
         SharedPreferences prefs = getSharedPreferences("user",MODE_PRIVATE);
         String restoredText = prefs.getString("status", null);
         if (restoredText != null) {
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
 

@@ -1,4 +1,4 @@
-package com.example.robin.myapplication;
+package my.power.project;
 
 import android.content.Context;
 
@@ -29,7 +29,7 @@ public class MySingleton {
         return requestQueue;
     }
 
-    public static  synchronized  MySingleton getInstance(Context context) {
+    public static  synchronized MySingleton getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new MySingleton(context);
         }

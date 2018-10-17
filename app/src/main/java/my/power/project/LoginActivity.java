@@ -1,4 +1,4 @@
-package com.example.robin.myapplication;
+package my.power.project;
 
 
 import android.app.Fragment;
@@ -8,21 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +28,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.io.File;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class LoginActivity extends Fragment  {
     String Server_url = "https://beholden-effects.000webhostapp.com/DomPowCom/login.php";
@@ -71,12 +62,13 @@ public class LoginActivity extends Fragment  {
         password = getActivity().findViewById(R.id.password1);
         signup = getActivity().findViewById(R.id.signup);
         logg =getActivity().findViewById(R.id.login);
+        idofcus = username.getText().toString();
+        ps = password.getText().toString();
         logg.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 avi.show();
-
                 post();
             }
         });
@@ -107,12 +99,10 @@ public class LoginActivity extends Fragment  {
                         String res=response.toString().trim();
                         if(!res.equals("0"))
                         {
-                           /* SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences=getActivity().getSharedPreferences("userid", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
-                            editor.putString("status",res);
-                            editor.apply();*/
-
-
+                            editor.putString("id",idofcus);
+                            editor.apply();
                             Toast.makeText(getActivity(),res,Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(),Homepage.class);
                             startActivity(intent);
@@ -135,8 +125,7 @@ public class LoginActivity extends Fragment  {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                idofcus = username.getText().toString();
-                ps = password.getText().toString();
+
                 params.put("cus",idofcus);
                 params.put("ps",ps);
                 return params;

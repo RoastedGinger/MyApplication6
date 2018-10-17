@@ -1,37 +1,21 @@
-package com.example.robin.myapplication;
+package my.power.project;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by robin on 13/7/18.
@@ -39,8 +23,8 @@ import java.util.Map;
 
 public class Signup extends Fragment {
 
-    String Server_url = "https://photogenic0001.000webhostapp.com/photogenic/photogenic1.0/createaccount.php";
-    Button button;
+    String Server_url = "";
+    Button button1;
     TextView textView;
     ImageView imageView,plock1,plock0,gone;
     EditText username,password,repassword,phno,adder,eid;
@@ -61,9 +45,9 @@ public class Signup extends Fragment {
         phno = getActivity().findViewById(R.id.phno1);
         adder = getActivity().findViewById(R.id.caddress);
         eid = getActivity().findViewById(R.id.cemailid);
-        button = getActivity().findViewById(R.id.signup1);
+        button1 = getActivity().findViewById(R.id.signup1);
         imageView = getActivity().findViewById(R.id.visible);
-        button.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -95,27 +79,8 @@ public class Signup extends Fragment {
                   Toast.makeText(getActivity(),"password dosent match", Toast.LENGTH_LONG).show();
                 }
                 else {
-
-                    //open();
-                    SharedPreferences preferences = getActivity().getSharedPreferences("details", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("name",un);
-                    editor.putString("Phone", phn);
-                    editor.putString("Email",email);
-                    editor.putString("password",ps);
-                    editor.putString("address",add);
-                    editor.apply();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    Secondsignup secondsignup = new Secondsignup();
-                    Signup signin_form = (Signup) fragmentManager.findFragmentByTag("signin");
-                  //  LoginActivity login_page = (LoginActivity) fragmentManager.findFragmentByTag("login666");
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.remove(signin_form);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.add(R.id.cre,secondsignup,"secondsign");
-                    // getFragmentManager().popBackStackImmediate();
-                    fragmentTransaction.commit();
-                }
+                    open();
+                    }
 
             }
         });
@@ -123,6 +88,23 @@ public class Signup extends Fragment {
     }
 
     public void open(){
-
+        SharedPreferences preferences = getActivity().getSharedPreferences("details", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("name",un);
+        editor.putString("Phone", phn);
+        editor.putString("Email",email);
+        editor.putString("password",ps);
+        editor.putString("address",add);
+        editor.apply();
+        FragmentManager fragmentManager = getFragmentManager();
+        Secondsignup secondsignup = new Secondsignup();
+        Signup signin_form = (Signup) fragmentManager.findFragmentByTag("signin");
+        //  LoginActivity login_page = (LoginActivity) fragmentManager.findFragmentByTag("login666");
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.remove(signin_form);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.add(R.id.cre,secondsignup,"secondsign");
+        // getFragmentManager().popBackStackImmediate();
+        fragmentTransaction.commit();
     }
 }
