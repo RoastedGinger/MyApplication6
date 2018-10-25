@@ -3,6 +3,7 @@ package my.power.project;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -120,6 +121,7 @@ public class Homepage extends AppCompatActivity {
                 params.put("date",formattedDate);
                 params.put("c_type",c_type);
                 params.put("details",details);
+
 
                 return params;
             }

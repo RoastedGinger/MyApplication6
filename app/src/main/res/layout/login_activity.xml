@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Consumer ID"
-                android:inputType="textAutoComplete"
+                android:inputType="number"
                 android:textColorHint="@color/colorPrimaryDark"
                 android:maxLines="1" />
 

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.project.robin.my.tulsi.dompowcom1.MainActivity"
+            android:name="my.power.project.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.project.robin.my.tulsi.dompowcom1.Homepage"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name="com.project.robin.my.tulsi.dompowcom1.Testing"></activity>
+            android:name="my.power.project.Homepage"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name="my.power.project.Testing">
+
+        </activity>
     </application>
 
 </manifest>
